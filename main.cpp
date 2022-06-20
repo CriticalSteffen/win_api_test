@@ -6,6 +6,7 @@
  */
 
 #include <stdlib.h>
+#include <windows.h>
 
 #include "tests/tests.h"
 #include "lib/libs.h"
@@ -19,6 +20,10 @@ int main(int argc, char *argv[])
     log("SysMon API Test");
 
     run_cpwtw_test();
+
+    log("SysMon API Test Complete");
+    Sleep(5000);
+    return 0;
 }
 
 void clean_exit()
