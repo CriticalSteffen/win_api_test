@@ -13,13 +13,10 @@ void run_cpwtw_test();
 void run_cpwtw_test()
 {
     HANDLE hProcessToken, hDuplicateToken;
-    STARTUPINFOW suInfo;
-    PROCESS_INFORMATION pInfo;
+    STARTUPINFOW suInfo = {0};
+    PROCESS_INFORMATION pInfo = {0};
 
     log("(run_cpwtw_test) Preparing test...");
-
-    ZeroMemory(&suInfo, sizeof(suInfo));
-    ZeroMemory(&pInfo, sizeof(pInfo));
 
     suInfo.cb = sizeof(suInfo);
     
@@ -37,33 +34,20 @@ void run_cpwtw_test()
     }
 
     // Sleep to break up the log.
-    Sleep(2000);
+    Sleep(5000);
 
     // Create the new process.
-    log("(CreateProcessWithTokenW) Creating new `calc.exe` process...");
-    if (CreateProcessWithTokenW(hDuplicateToken, LOGON_WITH_PROFILE, L"C:\\Windows\\System32\\calc.exe", NULL, 0, NULL, NULL, &suInfo, &pInfo))
+    log("(CreateProcessWithTokenW) Creating new `notepad.exe` process...");
+    if (CreateProcessWithTokenW(hDuplicateToken, LOGON_WITH_PROFILE, L"C:\\Windows\\System32\\notepad.exe", NULL, 0, NULL, NULL, &suInfo, &pInfo))
     {
 
         char message[256] = {0};
         sprintf(message, "(CreateProcessWithTokenW) Process created: %d", pInfo.dwProcessId);
         log(message);
 
-        // Sleep to break up the log.
-        Sleep(2000);
-
-        log("(TerminateThread) Terminating thread...");
-        if (TerminateThread(pInfo.hThread, 0))
+        Sleep(100);
+        if (!TerminateProcess(pInfo.hProcess, 0))
         {
-            log("(TerminateThread) Thread terminated.");
-        } else {
-            log_error("TerminateThread");
-        }
-
-        log("(TerminateProcess) Killing process...");
-        if (TerminateProcess(pInfo.hProcess, 0))
-        {
-            log("(TerminateProcess) Process killed.");
-        } else {
             log_error("TerminateProcess");
         }
         
