@@ -7,7 +7,6 @@
 #include <processthreadsapi.h>
 #include <stdio.h>
 
-void log_error(const char *func_name);
 void run_cpwtw_test();
 
 void run_cpwtw_test()
@@ -59,11 +58,4 @@ void run_cpwtw_test()
 
     CloseHandle(hProcessToken);
     CloseHandle(hDuplicateToken);
-}
-
-void log_error(const char *func_name)
-{
-    char error_msg[256] = {0};
-    sprintf(error_msg, "(%s) Failed with error code: %d.", func_name, GetLastError());
-    log(error_msg);
 }

@@ -1,5 +1,6 @@
 /* Log library implementation. */
 
+#include <windows.h>
 #include <stdio.h>
 #include <time.h>
 
@@ -35,4 +36,11 @@ void log(char *message)
     // Write to log file.
     fprintf(logFile, "%s :: %s\n", timeStamp, message);
     fflush(logFile);
+}
+
+void log_error(const char *func_name)
+{
+    char error_msg[256] = {0};
+    sprintf(error_msg, "(%s) Failed with error code: %d.", func_name, GetLastError());
+    log(error_msg);
 }
