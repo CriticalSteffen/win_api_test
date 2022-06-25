@@ -59,7 +59,7 @@ void run_cpwtw_test()
             pInfo.dwProcessId
         );
         // Terminate the process.
-        Sleep(100);
+        // Sleep(100); // Un-comment this line to pause before termination.
         if (!TerminateProcess(pInfo.hProcess, 0))
         {
             log_error("TerminateProcess");

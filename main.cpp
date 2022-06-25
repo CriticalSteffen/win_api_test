@@ -1,6 +1,7 @@
 /* SysMon API Test Driver
  * ======================
- * Execute a series of Windows API calls for observation with SysMon.
+ * Execute a series of commonly-abused Windows API calls for observation with
+ * SysMon.
  * 
  * The resulting binary must be run with administrator privileges.
  */

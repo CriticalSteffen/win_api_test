@@ -2,9 +2,11 @@
 
 #include "libs.h"
 
-#include <windows.h>
-#include <stdio.h>
-#include <time.h>
+#include <windows.h> /* GetLastError */
+#include <stdio.h> /* fclose, fflush, fopen, fprintf, printf, vsprintf */
+#include <stdarg.h> /* va_list, va_start, va_end */
+#include <string.h> /* strlen */
+#include <time.h> /* gmtime, strftime, time */
 
 FILE *logFile;
 

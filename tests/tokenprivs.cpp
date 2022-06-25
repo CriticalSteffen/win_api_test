@@ -40,8 +40,8 @@ void run_adjusttokenprivileges_test()
         return;
     }
     if (GetLastError() == ERROR_NOT_ALL_ASSIGNED) {
-        logf("(AdjustTokenPrivileges) Not all privileges were assigned");
+        logf("(AdjustTokenPrivileges) Not all privileges were assigned.");
     } else {
-        logf("(AdjustTokenPrivileges) All privileges were assigned");
+        logf("(AdjustTokenPrivileges) All privileges were assigned.");
     }
 }

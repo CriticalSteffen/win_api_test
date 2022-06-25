@@ -12,9 +12,9 @@ void run_getasynckeystate_test()
 {
     pause();
     if (GetAsyncKeyState(VK_CONTROL) < 0) {
-        logf("(GetAsyncKeyState) Control is pressed");
+        logf("(GetAsyncKeyState) Control is pressed.");
     } else {
-        logf("(GetAsyncKeyState) Control is not pressed");
+        logf("(GetAsyncKeyState) Control is not pressed.");
     }
 }
 
@@ -27,9 +27,9 @@ void run_getkeyboardstate_test()
         return;
     }
     if (keyboardState[VK_CONTROL]) {
-        logf("(GetKeyboardState) Control is pressed");
+        logf("(GetKeyboardState) Control is pressed.");
     } else {
-        logf("(GetKeyboardState) Control is not pressed");
+        logf("(GetKeyboardState) Control is not pressed.");
     }
 }
 
@@ -37,8 +37,8 @@ void run_getkeystate_test()
 {
     pause();
     if (GetKeyState(VK_CONTROL) < 0) {
-        logf("(GetKeyState) Control is pressed");
+        logf("(GetKeyState) Control is pressed.");
     } else {
-        logf("(GetKeyState) Control is not pressed");
+        logf("(GetKeyState) Control is not pressed.");
     }
 }

@@ -1,10 +1,15 @@
-/* GetIpNetTable() test implementation. */
+/* GetIpNetTable(), GetNativeSystemInfo() and RtlGetVersion() test
+ * implementation.
+ *
+ * Note: RtlGetVersion() comes from `ntdll.dll` via GetModuleHandle() and
+ * GetProcAddress().
+ */
 
 #include "tests.h"
 
 #include "../lib/libs.h" /* logf, log_error, pause */
 
-#include <windows.h> /* General data structures. */
+#include <windows.h> /* GetModuleHandle, GetNativeSystemInfo, GetProcAddress */
 #include <iphlpapi.h> /* GetIpNetTable */
 #include <stdlib.h> /* free, malloc, sizeof */
 
