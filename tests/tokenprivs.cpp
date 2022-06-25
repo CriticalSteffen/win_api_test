@@ -2,7 +2,7 @@
 
 #include "tests.h"
 
-#include "../lib/libs.h" /* logf, log_delay, log_error */
+#include "../lib/libs.h" /* logf, log_error, pause */
 
 #include <windows.h>
 /* AdjustTokenPrivileges
@@ -32,7 +32,8 @@ void run_adjusttokenprivileges_test()
         log_error("LookupPrivilegeValue");
         return;
     }
-    log_delay("AdjustTokenPrivileges");
+    
+    pause();
     privileges.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
     if (!AdjustTokenPrivileges(token, FALSE, &privileges, 0, NULL, NULL)) {
         log_error("AdjustTokenPrivileges");

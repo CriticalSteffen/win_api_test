@@ -48,12 +48,6 @@ void logf(char *format, ...)
     log(message);
 }
 
-void log_delay(char *message)
-{
-    Sleep(3000);
-    log_split(message);
-}
-
 void log_error(const char *func_name)
 {
     logf("(%s) Failed with error code: %d.", func_name, GetLastError());

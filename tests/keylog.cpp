@@ -4,13 +4,13 @@
 
 #include "tests.h"
 
-#include "../lib/libs.h" /* logf, log_delay, log_error */
+#include "../lib/libs.h" /* logf, log_error */
 
 #include <windows.h> /* GetAsyncKeyState, GetKeyboardState, GetKeyState */
 
 void run_getasynckeystate_test()
 {
-    log_delay("GetAsyncKeyState");
+    pause();
     if (GetAsyncKeyState(VK_CONTROL) < 0) {
         logf("(GetAsyncKeyState) Control is pressed");
     } else {
@@ -20,8 +20,8 @@ void run_getasynckeystate_test()
 
 void run_getkeyboardstate_test()
 {
-    log_delay("GetKeyboardState");
     BYTE keyboardState[256] = {0};
+    pause();
     if (!GetKeyboardState(keyboardState)) {
         log_error("GetKeyboardState");
         return;
@@ -35,7 +35,7 @@ void run_getkeyboardstate_test()
 
 void run_getkeystate_test()
 {
-    log_delay("GetKeyState");
+    pause();
     if (GetKeyState(VK_CONTROL) < 0) {
         logf("(GetKeyState) Control is pressed");
     } else {

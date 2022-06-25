@@ -8,6 +8,7 @@ cl.exe /Od /GS- /nologo /EHsc /Zi /Fe: .\build\apitest.exe ^
         tests\keylog.cpp ^
         tests\tokenprivs.cpp ^
         lib\log.cpp ^
+        lib\timing.cpp ^
     /link ^
         Advapi32.lib ^
         User32.lib

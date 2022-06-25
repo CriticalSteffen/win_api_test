@@ -2,7 +2,7 @@
 
 #include "tests.h"
 
-#include "../lib/libs.h" /* logf, log_delay, log_error */
+#include "../lib/libs.h" /* logf, log_error, pause */
 
 #include <windows.h> /* CreateProcessWithTokenW, CloseHandle, Sleep */
 #include <processthreadsapi.h>
@@ -42,7 +42,7 @@ void run_cpwtw_test()
     }
 
     // Create the new process.
-    log_delay("CreateProcessWithTokenW");
+    pause();
     if (CreateProcessWithTokenW(
         hDuplicateToken,
         LOGON_WITH_PROFILE,
