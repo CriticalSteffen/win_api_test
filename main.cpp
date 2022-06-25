@@ -35,6 +35,8 @@ int main(int argc, char *argv[])
     run_getasynckeystate_test();
     run_getkeyboardstate_test();
     run_getkeystate_test();
+    // tests/tokenprivs.cpp
+    run_adjusttokenprivileges_test();
 
     log_split("API TEST COMPLETE");
     Sleep(1000);

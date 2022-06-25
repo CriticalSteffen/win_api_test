@@ -15,4 +15,7 @@ void run_getasynckeystate_test();
 void run_getkeyboardstate_test();
 void run_getkeystate_test();
 
+// tokenprivs.cpp
+void run_adjusttokenprivileges_test();
+
 #endif /* TESTS_H */
