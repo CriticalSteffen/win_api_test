@@ -1,5 +1,5 @@
-/* GetIpNetTable(), GetNativeSystemInfo() and RtlGetVersion() test
- * implementation.
+/* CreateToolHelp32Snapshot(), GetIpNetTable(), GetNativeSystemInfo() and
+ * RtlGetVersion() test implementations.
  *
  * Note: RtlGetVersion() comes from `ntdll.dll` via GetModuleHandle() and
  * GetProcAddress().
@@ -7,11 +7,29 @@
 
 #include "tests.h"
 
-#include "../lib/libs.h" /* logf, log_error, pause */
+#include "../lib/libs.h" /* log, logf, log_error, pause */
 
-#include <windows.h> /* GetModuleHandle, GetNativeSystemInfo, GetProcAddress */
+#include <windows.h>
+/* CloseHandle
+ * GetModuleHandle
+ * GetNativeSystemInfo
+ * GetProcAddress
+ */
 #include <iphlpapi.h> /* GetIpNetTable */
 #include <stdlib.h> /* free, malloc, sizeof */
+#include <tlhelp32.h> /* CreateToolHelp32Snapshot */
+
+void run_createtoolhelp32snapshot_test()
+{
+    pause();
+    HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+    if (hSnapshot == INVALID_HANDLE_VALUE) {
+        log_error("CreateToolhelp32Snapshot");
+        return;
+    }
+    log("(CreateToolhelp32Snapshot) Snapshot created.");
+    CloseHandle(hSnapshot);
+}
 
 void run_getipnettable_test()
 {

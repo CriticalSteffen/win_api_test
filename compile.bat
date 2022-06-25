@@ -7,7 +7,6 @@ cl.exe /Od /GS- /nologo /EHsc /Zi /Fe: .\build\apitest.exe ^
         tests\enum.cpp ^
         tests\findfile.cpp ^
         tests\keylog.cpp ^
-        tests\proclist.cpp ^
         tests\tokenprivs.cpp ^
         lib\log.cpp ^
         lib\timing.cpp ^

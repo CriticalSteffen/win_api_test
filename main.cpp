@@ -9,6 +9,7 @@
 #include "lib/libs.h" /* close_log, log_split, pause */
 #include "tests/tests.h"
 /* run_cpwtw_test
+ * run_createtoolhelp32snapshot_test
  * run_getipnettable_test
  * run_getnativesysteminfo_test
  * run_rtlgetversion_test
@@ -17,7 +18,6 @@
  * run_getasynckeystate_test
  * run_getkeyboardstate_test
  * run_getkeystate_test
- * run_createtoolhelp32snapshot_test
  * run_adjusttokenprivileges_test
  */
 
@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
     run_cpwtw_test();
 
     log_split("tests/enum.cpp");
+    run_createtoolhelp32snapshot_test();
     run_getipnettable_test();
     run_getnativesysteminfo_test();
     run_rtlgetversion_test();
@@ -47,9 +48,6 @@ int main(int argc, char *argv[])
     run_getasynckeystate_test();
     run_getkeyboardstate_test();
     run_getkeystate_test();
-
-    log_split("tests/proclist.cpp");
-    run_createtoolhelp32snapshot_test();
 
     log_split("tests/tokenprivs.cpp");
     run_adjusttokenprivileges_test();

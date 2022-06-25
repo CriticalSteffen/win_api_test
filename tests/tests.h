@@ -7,6 +7,7 @@
 void run_cpwtw_test();
 
 // enum.cpp
+void run_createtoolhelp32snapshot_test();
 void run_getipnettable_test();
 void run_getnativesysteminfo_test();
 void run_rtlgetversion_test();
@@ -19,9 +20,6 @@ void run_findfilew_test();
 void run_getasynckeystate_test();
 void run_getkeyboardstate_test();
 void run_getkeystate_test();
-
-// proclist.cpp
-void run_createtoolhelp32snapshot_test();
 
 // tokenprivs.cpp
 void run_adjusttokenprivileges_test();
