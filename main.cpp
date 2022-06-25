@@ -10,6 +10,9 @@
 /* run_cpwtw_test
  * run_findfile_test
  * run_findfilew_test
+ * run_getasynckeystate_test
+ * run_getkeyboardstate_test
+ * run_getkeystate_test
  */
 
 #include <windows.h> /* Sleep */
@@ -23,12 +26,18 @@ int main(int argc, char *argv[])
 
     log_split("API TEST START");
 
+    // tests/cpwtw.cpp
     run_cpwtw_test();
+    // tests/findfile.cpp
     run_findfile_test();
     run_findfilew_test();
+    // tests/keylog.cpp
+    run_getasynckeystate_test();
+    run_getkeyboardstate_test();
+    run_getkeystate_test();
 
     log_split("API TEST COMPLETE");
-    Sleep(5000);
+    Sleep(1000);
     return 0;
 }
 

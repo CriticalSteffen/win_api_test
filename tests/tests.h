@@ -10,4 +10,9 @@ void run_cpwtw_test();
 void run_findfile_test();
 void run_findfilew_test();
 
+// keylog.cpp
+void run_getasynckeystate_test();
+void run_getkeyboardstate_test();
+void run_getkeystate_test();
+
 #endif /* TESTS_H */
