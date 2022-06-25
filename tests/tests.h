@@ -15,6 +15,9 @@ void run_getasynckeystate_test();
 void run_getkeyboardstate_test();
 void run_getkeystate_test();
 
+// proclist.cpp
+void run_createtoolhelp32snapshot_test();
+
 // tokenprivs.cpp
 void run_adjusttokenprivileges_test();
 

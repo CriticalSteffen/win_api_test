@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
     atexit(clean_exit);
 
     log_split("API TEST START");
-
+    
     log_split("tests/cpwtw.cpp");
     run_cpwtw_test();
 
@@ -38,9 +38,12 @@ int main(int argc, char *argv[])
     run_getkeyboardstate_test();
     run_getkeystate_test();
     
+    log_split("tests/proclist.cpp");
+    run_createtoolhelp32snapshot_test();
+
     log_split("tests/tokenprivs.cpp");
     run_adjusttokenprivileges_test();
-
+    
     log_split("API TEST COMPLETE");
     pause();
     return 0;
