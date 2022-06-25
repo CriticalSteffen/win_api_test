@@ -6,6 +6,9 @@
 // cpwtw.cpp
 void run_cpwtw_test();
 
+// enum.cpp
+void run_getipnettable_test();
+
 // findfile.cpp
 void run_findfile_test();
 void run_findfilew_test();

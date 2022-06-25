@@ -25,25 +25,28 @@ int main(int argc, char *argv[])
     atexit(clean_exit);
 
     log_split("API TEST START");
-    
+
     log_split("tests/cpwtw.cpp");
     run_cpwtw_test();
+
+    log_split("tests/enum.cpp");
+    run_getipnettable_test();
 
     log_split("tests/findfile.cpp");
     run_findfile_test();
     run_findfilew_test();
-    
+
     log_split("tests/keylog.cpp");
     run_getasynckeystate_test();
     run_getkeyboardstate_test();
     run_getkeystate_test();
-    
+
     log_split("tests/proclist.cpp");
     run_createtoolhelp32snapshot_test();
 
     log_split("tests/tokenprivs.cpp");
     run_adjusttokenprivileges_test();
-    
+
     log_split("API TEST COMPLETE");
     pause();
     return 0;

@@ -4,6 +4,7 @@ mkdir build
 cl.exe /Od /GS- /nologo /EHsc /Zi /Fe: .\build\apitest.exe ^
     main.cpp ^
         tests\cpwtw.cpp ^
+        tests\enum.cpp ^
         tests\findfile.cpp ^
         tests\keylog.cpp ^
         tests\proclist.cpp ^
@@ -12,6 +13,7 @@ cl.exe /Od /GS- /nologo /EHsc /Zi /Fe: .\build\apitest.exe ^
         lib\timing.cpp ^
     /link ^
         Advapi32.lib ^
+        Iphlpapi.lib ^
         User32.lib
 del *.obj
 del vc140.pdb
