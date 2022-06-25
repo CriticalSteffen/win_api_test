@@ -5,7 +5,6 @@
 #include "../common/util.h" /* logf, log_error, pause */
 
 #include <windows.h> /* FindFirstFile(W), FindNextFile(W), FindClose */
-#include <stdlib.h> /* wcstombs */
 
 void run_findfile_test()
 {
@@ -39,15 +38,13 @@ void run_findfilew_test()
         log_error("FindFirstFileW");
         return;
     }
-    wcstombs(FileName, fd.cFileName, 256);
-    logf("(FindFirstFileW) Found file: %s", FileName);
+    logf("(FindFirstFileW) Found file: %S", fd.cFileName);
     pause();
     if (!FindNextFileW(hFind, &fd)) {
         log_error("FindNextFileW");
         return;
     }
-    wcstombs(FileName, fd.cFileName, 256);
-    logf("(FindNextFileW) Found file: %s", FileName);
+    logf("(FindNextFileW) Found file: %S", fd.cFileName);
     if (!FindClose(hFind)) {
         log_error("FindClose");
         return;
