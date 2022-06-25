@@ -4,7 +4,7 @@
 
 #include "tests.h"
 
-#include "../common/util.h" /* logf, log_error */
+#include "../common/util.h" /* log, lofg, log_error, pause */
 
 #include <windows.h> /* GetAsyncKeyState, GetKeyboardState, GetKeyState */
 
@@ -12,34 +12,32 @@ void run_getasynckeystate_test()
 {
     pause();
     if (GetAsyncKeyState(VK_CONTROL) < 0) {
-        logf("(GetAsyncKeyState) Control is pressed.");
+        log("(GetAsyncKeyState) Control is pressed.");
     } else {
-        logf("(GetAsyncKeyState) Control is not pressed.");
+        log("(GetAsyncKeyState) Control is not pressed.");
     }
 }
 
 void run_getkeyboardstate_test()
 {
-    // TODO: Fix detection of the Control key state.
     BYTE keyboardState[256] = {0};
     pause();
-    if (!GetKeyboardState(keyboardState)) {
+    if (GetKeyboardState(keyboardState) == 0) {
         log_error("GetKeyboardState");
         return;
     }
-    if (keyboardState[VK_CONTROL] & 0x80) {
-        logf("(GetKeyboardState) Control is pressed.");
-    } else {
-        logf("(GetKeyboardState) Control is not pressed.");
-    }
+    logf(
+        "(GetKeyboardState) Control is %s.",
+        keyboardState[VK_CONTROL] & 0x81 ? "not pressed" : "pressed"
+    );
 }
 
 void run_getkeystate_test()
 {
     pause();
     if (GetKeyState(VK_CONTROL) < 0) {
-        logf("(GetKeyState) Control is pressed.");
+        log("(GetKeyState) Control is pressed.");
     } else {
-        logf("(GetKeyState) Control is not pressed.");
+        log("(GetKeyState) Control is not pressed.");
     }
 }
