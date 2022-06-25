@@ -6,7 +6,7 @@
 
 #include <windows.h> /* General data structures. */
 #include <iphlpapi.h> /* GetIpNetTable */
-#include <stdlib.h> /* free, malloc */
+#include <stdlib.h> /* free, malloc, sizeof */
 
 void run_getipnettable_test()
 {
@@ -32,5 +32,37 @@ void run_getipnettable_test()
         free(pIpNetTable);
     } else {
         log_error("GetIpNetTable");
+    }
+}
+
+void run_rtlgetversion_test()
+{
+    typedef NTSTATUS(NTAPI *RtlGetVersionPtr)(LPOSVERSIONINFOEX);
+    OSVERSIONINFOEX result = {
+        sizeof(OSVERSIONINFOEX), 0, 0, 0, 0, {'\0'}, 0, 0, 0, 0, 0
+    };
+    HMODULE ntdll = GetModuleHandle("ntdll.dll");
+    if (ntdll == NULL) {
+        log_error("GetModuleHandle");
+        return;
+    }
+    RtlGetVersionPtr pRtlGetVersion = (RtlGetVersionPtr)GetProcAddress(
+        ntdll, "RtlGetVersion"
+    );
+    if (pRtlGetVersion == NULL) {
+        log_error("GetProcAddress");
+        return;
+    }
+    pause();
+    if (pRtlGetVersion(&result) != 0) {
+        log_error("RtlGetVersion");
+    } else {
+        logf(
+            "(RtlGetVersion) Version: %d.%d.%d.%d",
+            result.dwMajorVersion,
+            result.dwMinorVersion,
+            result.dwBuildNumber,
+            result.dwPlatformId
+        );
     }
 }
