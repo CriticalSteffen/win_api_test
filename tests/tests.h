@@ -3,9 +3,6 @@
 #ifndef TESTS_H
 #define TESTS_H
 
-// cpwtw.cpp
-void run_cpwtw_test();
-
 // enum.cpp
 void run_createtoolhelp32snapshot_test();
 void run_getipnettable_test();
@@ -21,7 +18,8 @@ void run_getasynckeystate_test();
 void run_getkeyboardstate_test();
 void run_getkeystate_test();
 
-// tokenprivs.cpp
+// processes.cpp
 void run_adjusttokenprivileges_test();
+void run_createprocesswithtokenw_test();
 
 #endif /* TESTS_H */

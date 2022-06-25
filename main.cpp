@@ -8,8 +8,7 @@
 
 #include "common/util.h" /* close_log, log_split, pause */
 #include "tests/tests.h"
-/* run_cpwtw_test
- * run_createtoolhelp32snapshot_test
+/* run_createtoolhelp32snapshot_test
  * run_getipnettable_test
  * run_getnativesysteminfo_test
  * run_rtlgetversion_test
@@ -19,6 +18,7 @@
  * run_getkeyboardstate_test
  * run_getkeystate_test
  * run_adjusttokenprivileges_test
+ * run_createprocesswithtokenw_test
  */
 
 #include <stdlib.h> /* atexit, exit */
@@ -30,9 +30,6 @@ int main(int argc, char *argv[])
     atexit(clean_exit);
 
     log_split("API TEST START");
-
-    log_split("tests/cpwtw.cpp");
-    run_cpwtw_test();
 
     log_split("tests/enum.cpp");
     run_createtoolhelp32snapshot_test();
@@ -49,8 +46,9 @@ int main(int argc, char *argv[])
     run_getkeyboardstate_test();
     run_getkeystate_test();
 
-    log_split("tests/tokenprivs.cpp");
+    log_split("tests/processes.cpp");
     run_adjusttokenprivileges_test();
+    run_createprocesswithtokenw_test();
 
     log_split("API TEST COMPLETE");
     pause();

@@ -3,11 +3,10 @@
 mkdir build
 cl.exe /Od /GS- /nologo /EHsc /Zi /Fe: .\build\apitest.exe ^
     main.cpp ^
-        tests\cpwtw.cpp ^
         tests\enum.cpp ^
         tests\findfile.cpp ^
         tests\keylog.cpp ^
-        tests\tokenprivs.cpp ^
+        tests\processes.cpp ^
         common\util.cpp ^
     /link ^
         Advapi32.lib ^

@@ -20,6 +20,7 @@ void run_getasynckeystate_test()
 
 void run_getkeyboardstate_test()
 {
+    // TODO: Fix detection of the Control key state.
     BYTE keyboardState[256] = {0};
     pause();
     if (!GetKeyboardState(keyboardState)) {
