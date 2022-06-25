@@ -1,11 +1,19 @@
 /* CreateProcessWithTokenW() test implementation. */
 
 #include "tests.h"
-#include "../lib/libs.h"
 
-#include <windows.h>
+#include "../lib/libs.h" /* log, logf, log_error */
+
+#include <windows.h> /* CreateProcessWithTokenW, CloseHandle, GetLastError */
 #include <processthreadsapi.h>
-#include <stdio.h>
+/* OpenProcessToken
+ * DuplicateTokenEx
+ * GetTokenInformation
+ * TokenPrivileges
+ * LookupPrivilegeValue
+ * AdjustTokenPrivileges
+ */
+#include <stdio.h> /* sprintf */
 
 void run_cpwtw_test();
 
@@ -39,10 +47,7 @@ void run_cpwtw_test()
     log("(CreateProcessWithTokenW) Creating new `notepad.exe` process...");
     if (CreateProcessWithTokenW(hDuplicateToken, LOGON_WITH_PROFILE, L"C:\\Windows\\System32\\notepad.exe", NULL, 0, NULL, NULL, &suInfo, &pInfo))
     {
-
-        char message[256] = {0};
-        sprintf(message, "(CreateProcessWithTokenW) Process created: %d", pInfo.dwProcessId);
-        log(message);
+        logf("(CreateProcessWithTokenW) Process created: %d", pInfo.dwProcessId);
 
         Sleep(100);
         if (!TerminateProcess(pInfo.hProcess, 0))

@@ -38,9 +38,17 @@ void log(char *message)
     fflush(logFile);
 }
 
+void logf(char *format, ...)
+{
+    char message[256] = {0};
+    va_list args;
+    va_start(args, format);
+    vsprintf(message, format, args);
+    va_end(args);
+    log(message);
+}
+
 void log_error(const char *func_name)
 {
-    char error_msg[256] = {0};
-    sprintf(error_msg, "(%s) Failed with error code: %d.", func_name, GetLastError());
-    log(error_msg);
+    logf("(%s) Failed with error code: %d.", func_name, GetLastError());
 }
