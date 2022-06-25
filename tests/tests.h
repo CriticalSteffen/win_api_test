@@ -8,6 +8,7 @@ void run_cpwtw_test();
 
 // enum.cpp
 void run_getipnettable_test();
+void run_getnativesysteminfo_test();
 void run_rtlgetversion_test();
 
 // findfile.cpp

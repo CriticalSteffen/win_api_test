@@ -35,6 +35,18 @@ void run_getipnettable_test()
     }
 }
 
+void run_getnativesysteminfo_test()
+{
+    SYSTEM_INFO si;
+    pause();
+    GetNativeSystemInfo(&si);
+    logf(
+        "(GetNativeSystemInfo) Processor: %s",
+        si.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_INTEL ?
+            "x86 (Intel)" : "x64 (AMD/Intel)"
+    );
+}
+
 void run_rtlgetversion_test()
 {
     typedef NTSTATUS(NTAPI *RtlGetVersionPtr)(LPOSVERSIONINFOEX);

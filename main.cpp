@@ -9,6 +9,7 @@
 #include "tests/tests.h"
 /* run_cpwtw_test
  * run_getipnettable_test
+ * run_getnativesysteminfo_test
  * run_rtlgetversion_test
  * run_findfile_test
  * run_findfilew_test
@@ -34,6 +35,7 @@ int main(int argc, char *argv[])
 
     log_split("tests/enum.cpp");
     run_getipnettable_test();
+    run_getnativesysteminfo_test();
     run_rtlgetversion_test();
 
     log_split("tests/findfile.cpp");
