@@ -11,6 +11,7 @@
 /* run_createtoolhelp32snapshot_test
  * run_getipnettable_test
  * run_getnativesysteminfo_test
+ * run_rtlgetntproducttype_test
  * run_rtlgetversion_test
  * run_findfile_test
  * run_findfilew_test
@@ -35,6 +36,7 @@ int main(int argc, char *argv[])
     run_createtoolhelp32snapshot_test();
     run_getipnettable_test();
     run_getnativesysteminfo_test();
+    run_rtlgetntproducttype_test();
     run_rtlgetversion_test();
 
     log_split("tests/filesystem.cpp");

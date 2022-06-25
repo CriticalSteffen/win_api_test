@@ -19,6 +19,15 @@
 #include <stdlib.h> /* free, malloc, sizeof */
 #include <tlhelp32.h> /* CreateToolHelp32Snapshot */
 
+
+typedef enum _NT_PRODUCT_TYPE {
+    NtProductWinNt = 1,
+    NtProductLanManNt,
+    NtProductServer
+} NT_PRODUCT_TYPE, *PNT_PRODUCT_TYPE;
+
+
+
 void run_createtoolhelp32snapshot_test()
 {
     pause();
@@ -67,6 +76,35 @@ void run_getnativesysteminfo_test()
         "(GetNativeSystemInfo) Processor: %s",
         si.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_INTEL ?
             "x86 (Intel)" : "x64 (AMD/Intel)"
+    );
+}
+
+void run_rtlgetntproducttype_test()
+{
+    typedef NTSTATUS(NTAPI *RtlGetNtProductTypePtr)(LPDWORD);
+    HMODULE ntdll = GetModuleHandle("ntdll.dll");
+    if (ntdll == NULL) {
+        log_error("GetModuleHandle");
+        return;
+    }
+    RtlGetNtProductTypePtr pRtlGetNtProductType = (
+        RtlGetNtProductTypePtr
+    )GetProcAddress(
+        ntdll, "RtlGetNtProductType"
+    );
+    if (pRtlGetNtProductType == NULL) {
+        log_error("GetProcAddress");
+        return;
+    }
+    DWORD dwProductType = 0;
+    pause();
+    pRtlGetNtProductType(&dwProductType);
+    logf(
+        "(RtlGetNtProductType) Product type: %s",
+        dwProductType == NtProductWinNt ? "Windows NT" :
+        dwProductType == NtProductLanManNt ? "Windows Server" :
+        dwProductType == NtProductServer ? "Windows Server" :
+        "Unknown"
     );
 }
 
