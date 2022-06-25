@@ -1,10 +1,10 @@
 /* Log library implementation. */
 
+#include "libs.h"
+
 #include <windows.h>
 #include <stdio.h>
 #include <time.h>
-
-#include "libs.h"
 
 FILE *logFile;
 
@@ -48,7 +48,25 @@ void logf(char *format, ...)
     log(message);
 }
 
+void log_delay(char *message)
+{
+    Sleep(3000);
+    log_split(message);
+}
+
 void log_error(const char *func_name)
 {
     logf("(%s) Failed with error code: %d.", func_name, GetLastError());
+}
+
+void log_split(char *message)
+{
+    int messageLength = strlen(message);
+    messageLength += 5;
+    char dashes[56] = {0};
+    for (int i = 0; i < (56 - messageLength); i++)
+    {
+        dashes[i] = '-';
+    }
+    logf("---(%s)%s", message, dashes);
 }

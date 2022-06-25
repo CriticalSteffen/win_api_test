@@ -4,7 +4,7 @@
 
 #include "../lib/libs.h" /* log, logf, log_error */
 
-#include <windows.h> /* CreateProcessWithTokenW, CloseHandle, GetLastError */
+#include <windows.h> /* CreateProcessWithTokenW, CloseHandle, GetLastError, Sleep */
 #include <processthreadsapi.h>
 /* OpenProcessToken
  * DuplicateTokenEx
@@ -15,15 +15,11 @@
  */
 #include <stdio.h> /* sprintf */
 
-void run_cpwtw_test();
-
 void run_cpwtw_test()
 {
     HANDLE hProcessToken, hDuplicateToken;
     STARTUPINFOW suInfo = {0};
     PROCESS_INFORMATION pInfo = {0};
-
-    log("(run_cpwtw_test) Preparing test...");
 
     suInfo.cb = sizeof(suInfo);
     
@@ -40,11 +36,8 @@ void run_cpwtw_test()
         return;
     }
 
-    // Sleep to break up the log.
-    Sleep(5000);
-
     // Create the new process.
-    log("(CreateProcessWithTokenW) Creating new `notepad.exe` process...");
+    log_delay("CreateProcessWithTokenW");
     if (CreateProcessWithTokenW(hDuplicateToken, LOGON_WITH_PROFILE, L"C:\\Windows\\System32\\notepad.exe", NULL, 0, NULL, NULL, &suInfo, &pInfo))
     {
         logf("(CreateProcessWithTokenW) Process created: %d", pInfo.dwProcessId);

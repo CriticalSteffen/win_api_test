@@ -14,16 +14,14 @@ void run_findfilew_test();
 void run_findfile_test()
 {
     WIN32_FIND_DATA fd = {0};
-    Sleep(2000);
-    log("(FindFirstFile) Finding first file...");
+    log_delay("FindFirstFile");
     HANDLE hFind = FindFirstFile("C:\\Windows\\System32\\*.exe", &fd);
     if (hFind == INVALID_HANDLE_VALUE) {
         log_error("FindFirstFile");
         return;
     }
     logf("(FindFirstFile) Found file: %s", fd.cFileName);
-    Sleep(2000);
-    log("(FindNextFile) Finding next file...");
+    log_delay("FindNextFile");
     if (!FindNextFile(hFind, &fd)) {
         log_error("FindNextFile");
         return;
@@ -39,8 +37,7 @@ void run_findfilew_test()
 {
     WIN32_FIND_DATAW fd = {0};
     char FileName[256] = {0};
-    Sleep(2000);
-    log("(FindFirstFileW) Finding first file...");
+    log_delay("FindFirstFileW");
     HANDLE hFind = FindFirstFileW(L"C:\\Windows\\System32\\*.exe", &fd);
     if (hFind == INVALID_HANDLE_VALUE) {
         log_error("FindFirstFileW");
@@ -48,8 +45,7 @@ void run_findfilew_test()
     }
     wcstombs(FileName, fd.cFileName, 256);
     logf("(FindFirstFileW) Found file: %s", FileName);
-    Sleep(2000);
-    log("(FindNextFileW) Finding next file...");
+    log_delay("FindNextFileW");
     if (!FindNextFileW(hFind, &fd)) {
         log_error("FindNextFileW");
         return;

@@ -17,13 +17,13 @@ int main(int argc, char *argv[])
 {
     atexit(clean_exit);
 
-    log("SysMon API Test");
+    log_split("API TEST START");
 
     run_cpwtw_test();
     run_findfile_test();
     run_findfilew_test();
 
-    log("SysMon API Test Complete");
+    log_split("API TEST COMPLETE");
     Sleep(5000);
     return 0;
 }
