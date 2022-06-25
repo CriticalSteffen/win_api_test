@@ -14,18 +14,22 @@
  * GetModuleHandle
  * GetNativeSystemInfo
  * GetProcAddress
+ * GetUserNameA
+ * GetUserNameW
  */
 #include <iphlpapi.h> /* GetIpNetTable */
 #include <stdlib.h> /* free, malloc, sizeof */
 #include <tlhelp32.h> /* CreateToolHelp32Snapshot */
 
 
+/* Borrowed from https://www.codemachine.com/downloads/win80/ntdef.h
+ * ... I promise to give it back when I'm done with it.
+ */
 typedef enum _NT_PRODUCT_TYPE {
     NtProductWinNt = 1,
     NtProductLanManNt,
     NtProductServer
 } NT_PRODUCT_TYPE, *PNT_PRODUCT_TYPE;
-
 
 
 void run_createtoolhelp32snapshot_test()
@@ -77,6 +81,28 @@ void run_getnativesysteminfo_test()
         si.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_INTEL ?
             "x86 (Intel)" : "x64 (AMD/Intel)"
     );
+}
+
+void run_getusername_test()
+{
+    // Test GetUserNameA().
+    char szUserName[UNLEN + 1];
+    DWORD dwSize = sizeof(szUserName);
+    pause();
+    if (!GetUserNameA(szUserName, &dwSize)) {
+        log_error("GetUserNameA");
+        return;
+    }
+    logf("(GetUserNameA) User name: %s", szUserName);
+    // Test GetUserNameW().
+    wchar_t szUserNameW[UNLEN + 1];
+    dwSize = sizeof(szUserNameW);
+    pause();
+    if (!GetUserNameW(szUserNameW, &dwSize)) {
+        log_error("GetUserNameW");
+        return;
+    }
+    logf("(GetUserNameW) User name: %S", szUserNameW);
 }
 
 void run_rtlgetntproducttype_test()

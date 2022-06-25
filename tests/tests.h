@@ -7,6 +7,7 @@
 void run_createtoolhelp32snapshot_test();
 void run_getipnettable_test();
 void run_getnativesysteminfo_test();
+void run_getusername_test();
 void run_rtlgetntproducttype_test();
 void run_rtlgetversion_test();
 
