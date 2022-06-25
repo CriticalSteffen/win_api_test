@@ -1,29 +1,30 @@
 /* Log library implementation. */
 
-#include "libs.h"
+#include "util.h"
 
-#include <windows.h> /* GetLastError */
+#include <windows.h> /* GetLastError, Sleep */
 #include <stdio.h> /* fclose, fflush, fopen, fprintf, printf, vsprintf */
 #include <stdarg.h> /* va_list, va_start, va_end */
 #include <string.h> /* strlen */
 #include <time.h> /* gmtime, strftime, time */
 
-FILE *logFile;
+const int DELAY_MS = 2000;
+FILE *LOG_FILE;
 
 void close_log()
 {
-    if (logFile)
+    if (LOG_FILE)
     {
-        fclose(logFile);
-        logFile = NULL;
+        fclose(LOG_FILE);
+        LOG_FILE = NULL;
     }
 }
 
 void log(char *message)
 {
-    if (logFile == NULL)
+    if (LOG_FILE == NULL)
     {
-        logFile = fopen("log.txt", "w");
+        LOG_FILE = fopen("log.txt", "w");
     }
 
     // Create timestamp.
@@ -36,8 +37,8 @@ void log(char *message)
     printf("%s :: %s\n", timeStamp, message);
 
     // Write to log file.
-    fprintf(logFile, "%s :: %s\n", timeStamp, message);
-    fflush(logFile);
+    fprintf(LOG_FILE, "%s :: %s\n", timeStamp, message);
+    fflush(LOG_FILE);
 }
 
 void logf(char *format, ...)
@@ -65,4 +66,9 @@ void log_split(char *message)
         dashes[i] = '-';
     }
     logf("---(%s)%s", message, dashes);
+}
+
+void pause()
+{
+    Sleep(DELAY_MS);
 }

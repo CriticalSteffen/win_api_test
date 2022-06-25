@@ -2,7 +2,7 @@
 
 #include "tests.h"
 
-#include "../lib/libs.h" /* logf, log_error, pause */
+#include "../common/util.h" /* logf, log_error, pause */
 
 #include <windows.h> /* CreateProcessWithTokenW, CloseHandle, Sleep */
 #include <processthreadsapi.h>

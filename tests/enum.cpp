@@ -7,7 +7,7 @@
 
 #include "tests.h"
 
-#include "../lib/libs.h" /* log, logf, log_error, pause */
+#include "../common/util.h" /* log, logf, log_error, pause */
 
 #include <windows.h>
 /* CloseHandle

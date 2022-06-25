@@ -1,7 +1,7 @@
-/* Library header. */
+/* Common functions header. */
 
-#ifndef LIBS_H
-#define LIBS_H
+#ifndef UTIL_H
+#define UTIL_H
 
 // log.cpp
 void close_log();
@@ -14,4 +14,4 @@ void log_split(char *message);
 // timing.cpp
 void pause();
 
-#endif /* LIBS_H */
+#endif /* UTIL_H */

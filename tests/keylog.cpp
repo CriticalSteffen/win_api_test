@@ -4,7 +4,7 @@
 
 #include "tests.h"
 
-#include "../lib/libs.h" /* logf, log_error */
+#include "../common/util.h" /* logf, log_error */
 
 #include <windows.h> /* GetAsyncKeyState, GetKeyboardState, GetKeyState */
 
@@ -26,7 +26,7 @@ void run_getkeyboardstate_test()
         log_error("GetKeyboardState");
         return;
     }
-    if (keyboardState[VK_CONTROL]) {
+    if (keyboardState[VK_CONTROL] & 0x80) {
         logf("(GetKeyboardState) Control is pressed.");
     } else {
         logf("(GetKeyboardState) Control is not pressed.");

@@ -6,7 +6,7 @@
  * The resulting binary must be run with administrator privileges.
  */
 
-#include "lib/libs.h" /* close_log, log_split, pause */
+#include "common/util.h" /* close_log, log_split, pause */
 #include "tests/tests.h"
 /* run_cpwtw_test
  * run_createtoolhelp32snapshot_test
