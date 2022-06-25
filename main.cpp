@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
     run_getnativesysteminfo_test();
     run_rtlgetversion_test();
 
-    log_split("tests/findfile.cpp");
+    log_split("tests/filesystem.cpp");
     run_findfile_test();
     run_findfilew_test();
 

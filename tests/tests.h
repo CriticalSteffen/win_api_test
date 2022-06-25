@@ -9,7 +9,7 @@ void run_getipnettable_test();
 void run_getnativesysteminfo_test();
 void run_rtlgetversion_test();
 
-// findfile.cpp
+// filesystem.cpp
 void run_findfile_test();
 void run_findfilew_test();
 
