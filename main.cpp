@@ -13,6 +13,7 @@
  * run_getasynckeystate_test
  * run_getkeyboardstate_test
  * run_getkeystate_test
+ * run_adjusttokenprivileges_test
  */
 
 #include <stdlib.h> /* atexit, exit */
