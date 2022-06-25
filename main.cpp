@@ -5,11 +5,15 @@
  * The resulting binary must be run with administrator privileges.
  */
 
-#include <stdlib.h>
-#include <windows.h>
-
+#include "lib/libs.h" /* log_split, close_log */
 #include "tests/tests.h"
-#include "lib/libs.h"
+/* run_cpwtw_test
+ * run_findfile_test
+ * run_findfilew_test
+ */
+
+#include <windows.h> /* Sleep */
+#include <stdlib.h> /* atexit, exit */
 
 void clean_exit();
 

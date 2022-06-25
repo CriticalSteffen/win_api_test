@@ -2,18 +2,15 @@
 
 #include "tests.h"
 
-#include "../lib/libs.h" /* log, logf, log_error */
+#include "../lib/libs.h" /* logf, log_delay, log_error */
 
-#include <windows.h> /* CreateProcessWithTokenW, CloseHandle, GetLastError, Sleep */
+#include <windows.h> /* CreateProcessWithTokenW, CloseHandle, Sleep */
 #include <processthreadsapi.h>
 /* OpenProcessToken
  * DuplicateTokenEx
- * GetTokenInformation
- * TokenPrivileges
- * LookupPrivilegeValue
- * AdjustTokenPrivileges
+ * GetCurrentProcess
+ * TerminateProcess
  */
-#include <stdio.h> /* sprintf */
 
 void run_cpwtw_test()
 {
@@ -24,24 +21,44 @@ void run_cpwtw_test()
     suInfo.cb = sizeof(suInfo);
     
     // Get the token of the current process.
-    if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ALL_ACCESS, &hProcessToken)) {
+    if (!OpenProcessToken(
+        GetCurrentProcess(), TOKEN_ALL_ACCESS, &hProcessToken
+    )) {
         log_error("OpenProcessToken");
         return;
     }
 
     // Duplicate the token.
-    if (!DuplicateTokenEx(hProcessToken, TOKEN_ALL_ACCESS, NULL, SecurityImpersonation, TokenPrimary, &hDuplicateToken))
-    {
+    if (!DuplicateTokenEx(
+        hProcessToken,
+        TOKEN_ALL_ACCESS,
+        NULL,
+        SecurityImpersonation,
+        TokenPrimary,
+        &hDuplicateToken
+    )) {
         log_error("DuplicateTokenEx");
         return;
     }
 
     // Create the new process.
     log_delay("CreateProcessWithTokenW");
-    if (CreateProcessWithTokenW(hDuplicateToken, LOGON_WITH_PROFILE, L"C:\\Windows\\System32\\notepad.exe", NULL, 0, NULL, NULL, &suInfo, &pInfo))
-    {
-        logf("(CreateProcessWithTokenW) Process created: %d", pInfo.dwProcessId);
-
+    if (CreateProcessWithTokenW(
+        hDuplicateToken,
+        LOGON_WITH_PROFILE,
+        L"C:\\Windows\\System32\\notepad.exe",
+        NULL,
+        0,
+        NULL,
+        NULL,
+        &suInfo,
+        &pInfo
+    )) {
+        logf(
+            "(CreateProcessWithTokenW) Process created: %d",
+            pInfo.dwProcessId
+        );
+        // Terminate the process.
         Sleep(100);
         if (!TerminateProcess(pInfo.hProcess, 0))
         {

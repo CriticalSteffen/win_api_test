@@ -1,4 +1,4 @@
-/* CreateProcessWithTokenW() test header. */
+/* Test header. */
 
 #ifndef TESTS_H
 #define TESTS_H

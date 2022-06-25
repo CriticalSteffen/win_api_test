@@ -1,4 +1,4 @@
-/* Log library header. */
+/* Library header. */
 
 #ifndef LOG_H
 #define LOG_H

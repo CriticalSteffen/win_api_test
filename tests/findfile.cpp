@@ -1,15 +1,11 @@
-/* Test FindFirstFile and FindNextFile. */
+/* FindFirstFile() and FindNextFile() test implementations. */
 
 #include "tests.h"
 
-#include "../lib/libs.h" /* log, log_error */
+#include "../lib/libs.h" /* logf, log_delay, log_error */
 
-#include <windows.h> /* FindFirstFile(W), FindNextFile(W), FindClose, Sleep */
+#include <windows.h> /* FindFirstFile(W), FindNextFile(W), FindClose */
 #include <stdlib.h> /* wcstombs */
-#include <stdio.h> /* sprintf */
-
-void run_findfile_test();
-void run_findfilew_test();
 
 void run_findfile_test()
 {
