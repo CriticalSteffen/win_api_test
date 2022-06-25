@@ -20,6 +20,8 @@ int main(int argc, char *argv[])
     log("SysMon API Test");
 
     run_cpwtw_test();
+    run_findfile_test();
+    run_findfilew_test();
 
     log("SysMon API Test Complete");
     Sleep(5000);

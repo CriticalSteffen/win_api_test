@@ -4,6 +4,7 @@ mkdir build
 cl.exe /Od /GS- /nologo /EHsc /Zi /Fe: .\build\apitest.exe ^
     main.cpp ^
     tests\cpwtw.cpp ^
+    tests\findfile.cpp ^
     lib\log.cpp ^
     /link Advapi32.lib
 del *.obj
